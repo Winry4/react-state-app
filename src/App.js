@@ -1,22 +1,23 @@
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import { CounterButton } from './CounterButton';
+import { CongratulationMessage } from './CongratulationMessage';
 
 function App() {
+  const [numberOfClicks, setNumberOfClicks] = useState(0);
+  const [hideMessage, setHideMessage] = useState(false);
+  const increment = () => setNumberOfClicks(numberOfClicks + 1);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        {hideMessage
+          ? null
+          : <CongratulationMessage 
+            numberOfClicks={numberOfClicks} 
+            threshold={10} 
+            onHide={() => setHideMessage(true)}/>}
+        <CounterButton onIncrement={increment} numberOfClicks={numberOfClicks}></CounterButton>
       </header>
     </div>
   );
