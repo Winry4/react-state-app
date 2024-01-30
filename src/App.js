@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { HomePage, CounterButtonPage, PeopleListPage } from './pages';
 import './App.css';
 import { CounterButton } from './CounterButton';
 import { CongratulationMessage } from './CongratulationMessage';
@@ -8,19 +10,20 @@ function App() {
   const [hideMessage, setHideMessage] = useState(false);
   const increment = () => setNumberOfClicks(numberOfClicks + 1);
 
-  return (
+  return(
     <div className="App">
-      <header className="App-header">
-        {hideMessage
-          ? null
-          : <CongratulationMessage 
-            numberOfClicks={numberOfClicks} 
-            threshold={10} 
-            onHide={() => setHideMessage(true)}/>}
-        <CounterButton onIncrement={increment} numberOfClicks={numberOfClicks}></CounterButton>
-      </header>
+      
+      <BrowserRouter>
+      <Link to="/counter"> Go to Counter Button Page</Link>
+        <Routes>
+          <Route path="/" element={<HomePage/>} />
+          <Route path="/counter" element={<CounterButtonPage/>}/>
+          <Route path="/people-list" element={<PeopleListPage/>}/>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
+ 
 }
 
 export default App;
