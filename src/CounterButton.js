@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { DangerButton } from "./Button";
 
 export const CounterButton = ({onIncrement, numberOfClicks}) => {
 
@@ -6,7 +7,7 @@ export const CounterButton = ({onIncrement, numberOfClicks}) => {
     return (
         <>
             <p> You've clicked the button {numberOfClicks} times</p>
-            <button onClick={onIncrement}> Click me!</button>
+            <DangerButton onClick={onIncrement}> Click me!</DangerButton>
         </>
     );
 }
